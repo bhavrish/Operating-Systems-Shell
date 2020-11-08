@@ -73,27 +73,27 @@ int main(int argc, char *argv[]) {
         else if (pid == 0) {
             if (strcmp(buffer, "tree") == 0) { // if user types tree, execute tree() command 
                 char *args[] = {"./tree", buffer, NULL};
-                execv("./tree", args);
+                execv("./objFiles/tree", args);
             }
             else if (strcmp(buffer, "list") == 0) { // if user types list, execute list() command 
                 char *args[] = {"./list", buffer, NULL};
-                execv("./list", args);
+                execv("./objFiles/list", args);
             }
             else if (strcmp(buffer, "path") == 0) { // if user types path, execute path() command 
                 char *args[] = {"./path", buffer, NULL};
-                execv("./path", args);
+                execv("./objFiles/path", args);
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
                 char *args[] = {"./exit", history, NULL};
-                execv("./exit", args);
+                execv("./objFiles/exit", args);
             }
             else if (strcmp(buffer, "help") == 0) { // if user types exit, execute exit() command
                 char *args[] = {"./help", buffer, NULL};
-                execv("./help", args);
+                execv("./objFiles/help", args);
             }
             else { // if user types invalid command, execute error() command
                 char *args[] = {"./error", buffer, NULL};
-                execv("./error", args);
+                execv("./objFiles/error", args);
             }
 
             exit(1);
