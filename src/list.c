@@ -44,7 +44,7 @@ p1 = fork();
 
     if(p3 == 0){ 
 
-        int fid = open("t1.txt",O_WRONLY|O_CREAT, 0666);
+        int fid = open("./t1.txt",O_WRONLY);
         if(fid < 0){
         perror("Open: ");
         return -1;
@@ -64,7 +64,7 @@ p1 = fork();
     p4 = fork();
 
     if(p4 == 0){ 
-        execlp("mv", "mv", "t1.txt", "tree.txt", NULL);
+        execlp("mv", "mv", "./t1.txt", "./tree.txt", NULL);
         return -1;
     }
     else if (p4 < 0) {

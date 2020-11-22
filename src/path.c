@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     // write cwd to t2.txt
     FILE *fptr;
-    fptr = fopen("./src/Dir0/t2.txt", "w");
+    fptr = fopen("./t2.txt", "w");
 
     if (fptr == NULL)
     {
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     printf("Current working directory written to t2.txt\n");
 
     // rename t2.txt to path-info.txt
-    int value = rename("./src/Dir0/t2.txt", "./src/Dir0/path-info.txt");
+    int value = rename("./t2.txt", "./path-info.txt");
     printf("Renamed t2.txt to path-info.txt\n");
 
     if (value)
@@ -44,9 +44,9 @@ int main(int argc, char *argv[])
     }
 
     // concatenate tree.txt & path-info.txt
-    FILE *fp1 = fopen("./src/Dir0/tree.txt", "r");
-    FILE *fp2 = fopen("./src/Dir0/path-info.txt", "r");
-    FILE *fp3 = fopen("./src/Dir0/t3.txt", "w");
+    FILE *fp1 = fopen("./tree.txt", "r");
+    FILE *fp2 = fopen("./path-info.txt", "r");
+    FILE *fp3 = fopen("./t3.txt", "w");
     char c;
 
     if (fp1 == NULL || fp2 == NULL || fp3 == NULL)
@@ -66,15 +66,15 @@ int main(int argc, char *argv[])
     printf("Concatenated tree.txt & path-info.txt to t3.txt\n");
 
     // rename t2.txt to path-info.txt
-    value = rename("./src/Dir0/t3.txt", "./src/Dir0/log.txt");
+    value = rename("./t3.txt", "./log.txt");
     printf("Renamed t3.txt to log.txt\n");
 
     // remove tree.txt & path-info.txt
-    if (remove("./src/Dir0/path-info.txt") != 0)
+    if (remove("./path-info.txt") != 0)
         perror("Error");
     printf("Deleted path-info.txt\n");
 
-    if (remove("./src/Dir0/tree.txt") != 0)
+    if (remove("./tree.txt") != 0)
         perror("Error");
     printf("Deleted tree.txt\n");
 

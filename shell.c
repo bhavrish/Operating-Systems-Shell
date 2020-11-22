@@ -4,6 +4,8 @@
 #include <string.h>
 #include <errno.h>
 #include <dirent.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 
 struct Node { 
     char *command;
@@ -75,17 +77,20 @@ int main(int argc, char *argv[]) {
                 char *args[] = {"./tree", buffer, NULL};
                 execv("./objFiles/tree", args);
             }
-            else if (strcmp(buffer, "list") == 0) { // if user types list, execute list() command 
+            else if (strcmp(buffer, "list") == 0) { // if user types list, execute list() command
+                chdir("Dir0");
                 char *args[] = {"./list", buffer, NULL};
-                execv("./objFiles/list", args);
+                execv("../objFiles/list", args);
             }
             else if (strcmp(buffer, "path") == 0) { // if user types path, execute path() command 
+                chdir("Dir0");
                 char *args[] = {"./path", buffer, NULL};
-                execv("./objFiles/path", args);
+                execv("../objFiles/path", args);
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
+                chdir("Dir0");
                 char *args[] = {"./exit", history, NULL};
-                execv("./objFiles/exit", args);
+                execv("../objFiles/exit", args);
             }
             else if (strcmp(buffer, "help") == 0) { // if user types exit, execute exit() command
                 char *args[] = {"./help", buffer, NULL};
@@ -95,11 +100,10 @@ int main(int argc, char *argv[]) {
                 char *args[] = {"./error", buffer, NULL};
                 execv("./objFiles/error", args);
             }
-
             exit(1);
         }
-        else
-            wait(NULL);
+        
+        wait(NULL);
     }
     
     return 0;
