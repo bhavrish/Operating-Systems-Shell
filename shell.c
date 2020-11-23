@@ -47,8 +47,7 @@ char* getHistory() {
     int count = 0;
     while (itr != NULL) {
         if(count == 0)
-            strcat(historyString, itr->command); // concatenate command to end of historyString
-
+        strcat(historyString, itr->command); // concatenate command to end of historyString
         else if(count > 0){
             strcat(historyString, ", "); // concatenate comma to beginning of historyString
             strcat(historyString, itr->command); // concatenate command to end of historyString
@@ -84,19 +83,22 @@ int main(int argc, char *argv[]) {
                 char *args[] = {"./tree", buffer, NULL};
                 execv("./objFiles/tree", args);
             }
-            else if (strcmp(buffer, "list") == 0) { // if user types list, execute list() command 
+            else if (strcmp(buffer, "list") == 0) { // if user types list, execute list() command
+                chdir("Dir0");
                 char *args[] = {"./list", buffer, NULL};
-                execv("./objFiles/list", args);
+                execv("../objFiles/list", args);
             }
             else if (strcmp(buffer, "path") == 0) { // if user types path, execute path() command 
+                chdir("Dir0");
                 char *args[] = {"./path", buffer, NULL};
-                execv("./objFiles/path", args);
+                execv("../objFiles/path", args);
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
                 chdir("Dir0");
                 printf("\nGoodbye!\n");  
+
                 char *args[] = {"./exit", history, NULL};
-                execv("./objFiles/exit", args);
+                execv("../objFiles/exit", args);
                 exit(1);
             }
             else if (strcmp(buffer, "help") == 0) { // if user types exit, execute exit() command
@@ -107,10 +109,9 @@ int main(int argc, char *argv[]) {
                 char *args[] = {"./error", buffer, NULL};
                 execv("./objFiles/error", args);
             }
-
             exit(1);
         }
-
+        
         wait(NULL);
         if (strcmp(buffer, "exit") == 0) 
             break;
