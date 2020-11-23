@@ -96,7 +96,6 @@ int main(int argc, char *argv[]) {
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
                 chdir("Dir0");
                 printf("\nGoodbye!\n");  
-
                 char *args[] = {"./exit", history, NULL};
                 execv("../objFiles/exit", args);
                 exit(1);
@@ -112,9 +111,11 @@ int main(int argc, char *argv[]) {
             exit(1);
         }
         
-        wait(NULL);
-        if (strcmp(buffer, "exit") == 0) 
+        wait(NULL); 
+        if (strcmp(buffer, "exit") == 0){
+            getchar();
             break;
+        }
     }
     
     return 0;
