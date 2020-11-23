@@ -4,6 +4,8 @@
 #include <string.h>
 #include <errno.h>
 #include <dirent.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 
 struct Node { 
     char *command;
@@ -42,9 +44,16 @@ char* getHistory() {
     strcpy(historyString, "");
 
     struct Node* itr = head;
+    int count = 0;
     while (itr != NULL) {
-        strcat(historyString, itr->command); // concatenate command to end of historyString
-        strcat(historyString, ","); // concatenate comma to end of historyString
+        if(count == 0)
+            strcat(historyString, itr->command); // concatenate command to end of historyString
+
+        else if(count > 0){
+            strcat(historyString, ", "); // concatenate comma to beginning of historyString
+            strcat(historyString, itr->command); // concatenate command to end of historyString
+        }
+        count++;
         itr = itr->next; 
     }
 
@@ -53,7 +62,7 @@ char* getHistory() {
 
 int main(int argc, char *argv[]) {
     while(1) { // run loop until user types "exit"
-        printf("Type something: ");
+        printf("\nType something: ");
         char *buffer = NULL;
         size_t len = 0;
         ssize_t bufferSize = 0;
@@ -84,8 +93,11 @@ int main(int argc, char *argv[]) {
                 execv("./objFiles/path", args);
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
+                chdir("Dir0");
+                printf("\nGoodbye!\n");  
                 char *args[] = {"./exit", history, NULL};
                 execv("./objFiles/exit", args);
+                exit(1);
             }
             else if (strcmp(buffer, "help") == 0) { // if user types exit, execute exit() command
                 char *args[] = {"./help", buffer, NULL};
@@ -98,8 +110,10 @@ int main(int argc, char *argv[]) {
 
             exit(1);
         }
-        else
-            wait(NULL);
+
+        wait(NULL);
+        if (strcmp(buffer, "exit") == 0) 
+            break;
     }
     
     return 0;
