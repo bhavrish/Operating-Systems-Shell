@@ -1,8 +1,0 @@
-total 0
-drwxr-xr-x  6 bhaveshshah  staff  192 Nov 22 18:31 .
-drwxr-xr-x  8 bhaveshshah  staff  256 Nov 22 18:31 ..
-drwxr-xr-x  2 bhaveshshah  staff   64 Nov 22 18:31 Dir1
--rw-r--r--  1 bhaveshshah  staff    0 Nov 22 18:31 t1.txt
--rw-r--r--  1 bhaveshshah  staff    0 Nov 22 18:31 t2.txt
--rw-r--r--  1 bhaveshshah  staff    0 Nov 22 18:31 t3.txt
-/Users/bhaveshshah/Desktop/Operating-Systems-Shell/Dir0
