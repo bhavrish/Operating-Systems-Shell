@@ -47,9 +47,21 @@ int main(int argc, char *argv[])
     FILE *fp3 = fopen("./t3.txt", "w");
     char c;
 
-    if (fp1 == NULL || fp2 == NULL || fp3 == NULL)
+    if (fp1 == NULL)
     {
-        puts("Could not open files\n");
+        puts("Could not open tree.txt");
+        exit(0);
+    }
+
+    if (fp2 == NULL)
+    {
+        puts("Could not open path-info.txt");
+        exit(0);
+    }
+
+    if (fp3 == NULL)
+    {
+        puts("Could not open t3.txt");
         exit(0);
     }
 
@@ -63,7 +75,7 @@ int main(int argc, char *argv[])
     fclose(fp3);
     printf("Concatenated tree.txt & path-info.txt to t3.txt\n");
 
-    // rename t2.txt to path-info.txt
+    // rename t3.txt to log.txt
     value = rename("./t3.txt", "./log.txt");
     printf("Renamed t3.txt to log.txt\n");
 
