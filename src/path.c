@@ -7,8 +7,6 @@
 
 int main(int argc, char *argv[])
 {
-    printf("\n In path\n"); // print success message
-
     // print the current working directory
     char cwd[200];
     if (getcwd(cwd, sizeof(cwd)) != NULL)

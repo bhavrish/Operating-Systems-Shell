@@ -8,7 +8,7 @@
 #include <signal.h>
 
 int main(int argc, char *argv[]) {
-    printf("\n Last 4 Commands:\n"); // print last 4 commands
+    printf("\nLast 4 Commands:\n"); // print last 4 commands
     printf("%s \n\n", argv[1]);
     
     pid_t fq = fork(); // fork a child - call it Process Q

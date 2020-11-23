@@ -9,12 +9,9 @@
 #include <errno.h>
 
 int main(int argc, char *argv[]) {
-    
-	printf("\n In list\n"); // print success message
-
 	int p1, p2, p3, p4;
 
-p1 = fork();
+    p1 = fork();
 
 	if(p1 == 0){
 		execlp("clear", "clear", NULL);
@@ -92,11 +89,6 @@ p1 = fork();
         perror("Wait Error: ");
         return -1;  
     }
-
-	
-
-    printf("\nLeaving List\n");
-
 	
     return 0;
 }

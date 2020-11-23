@@ -61,7 +61,7 @@ char* getHistory() {
 
 int main(int argc, char *argv[]) {
     while(1) { // run loop until user types "exit"
-        printf("\nType something: ");
+        printf("\n🔥: ");
         char *buffer = NULL;
         size_t len = 0;
         ssize_t bufferSize = 0;
@@ -84,18 +84,25 @@ int main(int argc, char *argv[]) {
                 execv("./objFiles/tree", args);
             }
             else if (strcmp(buffer, "list") == 0) { // if user types list, execute list() command
-                chdir("Dir0");
+                if (chdir("Dir0") == -1) // change dir, otherwise print message that dir doesn't exist
+                    printf("\033[1;31mDir0 does not exist!\033[0m\n");
+
                 char *args[] = {"./list", buffer, NULL};
                 execv("../objFiles/list", args);
             }
             else if (strcmp(buffer, "path") == 0) { // if user types path, execute path() command 
-                chdir("Dir0");
+                if (chdir("Dir0") == -1) // change dir, otherwise print message that dir doesn't exist
+                    printf("\033[1;31mDir0 does not exist!\033[0m\n");
+
                 char *args[] = {"./path", buffer, NULL};
                 execv("../objFiles/path", args);
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
-                chdir("Dir0");
-                printf("\nGoodbye!\n");  
+                if (chdir("Dir0") == -1) // change dir, otherwise print message that dir doesn't exist
+                    printf("\033[1;31mDir0 does not exist!\033[0m\n");
+
+                printf("\033[0;32mGoodbye!\033[0m\n");
+
                 char *args[] = {"./exit", history, NULL};
                 execv("../objFiles/exit", args);
             }
