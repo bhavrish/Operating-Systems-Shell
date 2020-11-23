@@ -98,7 +98,6 @@ int main(int argc, char *argv[]) {
                 printf("\nGoodbye!\n");  
                 char *args[] = {"./exit", history, NULL};
                 execv("../objFiles/exit", args);
-                exit(1);
             }
             else if (strcmp(buffer, "help") == 0) { // if user types exit, execute exit() command
                 char *args[] = {"./help", buffer, NULL};
