@@ -44,9 +44,15 @@ char* getHistory() {
     strcpy(historyString, "");
 
     struct Node* itr = head;
+    int count = 0;
     while (itr != NULL) {
+        if(count == 0)
         strcat(historyString, itr->command); // concatenate command to end of historyString
-        strcat(historyString, ","); // concatenate comma to end of historyString
+        else if(count > 0){
+            strcat(historyString, ", "); // concatenate comma to beginning of historyString
+            strcat(historyString, itr->command); // concatenate command to end of historyString
+        }
+        count++;
         itr = itr->next; 
     }
 
@@ -55,7 +61,7 @@ char* getHistory() {
 
 int main(int argc, char *argv[]) {
     while(1) { // run loop until user types "exit"
-        printf("Type something: ");
+        printf("\nType something: ");
         char *buffer = NULL;
         size_t len = 0;
         ssize_t bufferSize = 0;
@@ -89,6 +95,7 @@ int main(int argc, char *argv[]) {
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
                 chdir("Dir0");
+                printf("\nGoodbye!\n");  
                 char *args[] = {"./exit", history, NULL};
                 execv("../objFiles/exit", args);
             }
@@ -103,7 +110,11 @@ int main(int argc, char *argv[]) {
             exit(1);
         }
         
-        wait(NULL);
+        wait(NULL); 
+        if (strcmp(buffer, "exit") == 0){
+            getchar();
+            break;
+        }
     }
     
     return 0;
