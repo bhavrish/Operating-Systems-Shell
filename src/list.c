@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
     p1 = fork();
 
 	if(p1 == 0){
+	// This is performing the first task, to clear the screen of the terminal
 		execlp("clear", "clear", NULL);
         return -1;
     }
@@ -26,7 +27,8 @@ int main(int argc, char *argv[]) {
 
     p2 = fork();
 
-    if(p2 == 0){
+    if(p2 == 0){	
+    // Then the program will print the contents of the current directory with some details as well	
       	execlp("ls", "ls",  "-la", NULL);
         return -1;
     }
@@ -40,14 +42,16 @@ int main(int argc, char *argv[]) {
     p3 = fork();
 
     if(p3 == 0){ 
-
+    // This will first open the t1.txt file	 
+         	    
         int fid = open("./t1.txt",O_WRONLY);
         if(fid < 0){
         perror("Open: ");
         return -1;
         }
-
+    // Then this is changing the output stream to the t1.txt file
         dup2(fid, 1);  
+    // And finally we print the contents of the current directory to the output stream, in this case the file t1.txt
       	execlp("ls", "ls", "-la", NULL);
         return -1;
     }
@@ -61,6 +65,7 @@ int main(int argc, char *argv[]) {
     p4 = fork();
 
     if(p4 == 0){ 
+    // Finally the program will rename the t1.txt file to tree.txt	    
         execlp("mv", "mv", "./t1.txt", "./tree.txt", NULL);
         return -1;
     }
@@ -69,6 +74,8 @@ int main(int argc, char *argv[]) {
         return -1;
     }
     
+	
+    // Then the program will wait for each of it's children to be terminated correctly		
 
     if(wait(NULL) == -1){
         perror("Wait Error: ");
