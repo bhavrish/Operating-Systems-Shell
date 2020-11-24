@@ -5,8 +5,9 @@
 #include <sys/wait.h>
 
 int main(int argc, char *argv[]) {
+    printf("\033[0;36m");
     printf("\nLast 4 Commands:\n"); // print last 4 commands
-    printf("%s \n\n", argv[1]);
+    printf("%s \033[0m\n\n", argv[1]);
     
     pid_t fq = fork(); // fork a child - call it Process Q
     if (fq == -1){

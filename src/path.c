@@ -30,11 +30,11 @@ int main(int argc, char *argv[])
 
     fputs(cwd, fptr);
     fclose(fptr);
-    printf("Current working directory written to t2.txt\n");
+    printf("\033[0;36mCurrent working directory written to t2.txt\n");
 
     // rename t2.txt to path-info.txt
     int value = rename("./t2.txt", "./path-info.txt");
-    printf("Renamed t2.txt to path-info.txt\n");
+    printf("Renamed t2.txt to path-info.txt\033[0m\n");
 
     if (value)
     {
@@ -49,19 +49,19 @@ int main(int argc, char *argv[])
 
     if (fp1 == NULL)
     {
-        puts("Could not open tree.txt");
+        puts("\033[0;31mCould not open tree.txt\033[0m");
         exit(0);
     }
 
     if (fp2 == NULL)
     {
-        puts("Could not open path-info.txt");
+        puts("\033[0;31mCould not open path-info.txt\033[0m");
         exit(0);
     }
 
     if (fp3 == NULL)
     {
-        puts("Could not open t3.txt");
+        puts("\033[0;31mCould not open t3.txt\033[0m");
         exit(0);
     }
 
@@ -73,20 +73,20 @@ int main(int argc, char *argv[])
     fclose(fp1);
     fclose(fp2);
     fclose(fp3);
-    printf("Concatenated tree.txt & path-info.txt to t3.txt\n");
+    printf("\033[0;36mConcatenated tree.txt & path-info.txt to t3.txt\n");
 
     // rename t3.txt to log.txt
     value = rename("./t3.txt", "./log.txt");
-    printf("Renamed t3.txt to log.txt\n");
+    printf("Renamed t3.txt to log.txt\033[0m\n");
 
     // remove tree.txt & path-info.txt
     if (remove("./path-info.txt") != 0)
         perror("Error");
-    printf("Deleted path-info.txt\n");
+    printf("\033[0;36mDeleted path-info.txt\033[0m\n");
 
     if (remove("./tree.txt") != 0)
         perror("Error");
-    printf("Deleted tree.txt\n");
+    printf("\033[0;36mDeleted tree.txt\033[0m\n");
 
     return 0;
 }
