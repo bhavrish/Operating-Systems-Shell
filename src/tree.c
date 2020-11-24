@@ -10,9 +10,10 @@
 int makeDirectory(char* directoryName){
     // if mkdir fails, return -1 or else return 0
     if (mkdir(directoryName, 0777) == -1){
-        perror("Error while creating the directory");
+        perror("Error while creating the directory Dir0");
         return -1;
     }
+    printf("%s created!\n", directoryName);
     return 0;
 }
 
@@ -20,9 +21,10 @@ int makeDirectory(char* directoryName){
 int changeDirectory(char* directoryName){
     //if chdir fails, return -1 or else return 0
     if (chdir(directoryName) == -1){
-        perror("Failed to change directory");
+        perror("Failed to change directory to Dir0");
         return -1;  
     }   
+    printf("Directory changed to %s!\n", directoryName);
     return 0;
 
 }
@@ -36,6 +38,7 @@ int createFile(char* filename){
         perror("Failed: to create the file");
         return -1;
     }
+    printf("File %s created!\n", filename);
     fclose(fp);
     return 0;
 }

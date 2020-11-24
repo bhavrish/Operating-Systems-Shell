@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <errno.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <sys/wait.h>
-#include <signal.h>
 
 int main(int argc, char *argv[]) {
     printf("\nLast 4 Commands:\n"); // print last 4 commands
@@ -24,7 +21,7 @@ int main(int argc, char *argv[]) {
     }
 
 
-    wait(NULL);
+    wait(NULL); // the parent process waits for the child process's execution to terminate before leaving 'exit'
     
     return 0;
 }
