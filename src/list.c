@@ -11,10 +11,13 @@
 int main(int argc, char *argv[]) {
 	int p1, p2, p3, p4;
 
+    printf("Started list command\n");	
+	
     p1 = fork();
 
 	if(p1 == 0){
 	// This is performing the first task, to clear the screen of the terminal
+		printf("Clearing Terminal\n");
 		execlp("clear", "clear", NULL);
         return -1;
     }
@@ -28,7 +31,8 @@ int main(int argc, char *argv[]) {
     p2 = fork();
 
     if(p2 == 0){	
-    // Then the program will print the contents of the current directory with some details as well	
+    // Then the program will print the contents of the current directory with some details as well
+	printf("Printing current directory and its files\n");
       	execlp("ls", "ls",  "-la", NULL);
         return -1;
     }
@@ -43,7 +47,7 @@ int main(int argc, char *argv[]) {
 
     if(p3 == 0){ 
     // This will first open the t1.txt file	 
-         	    
+        
         int fid = open("./t1.txt",O_WRONLY);
         if(fid < 0){
         perror("Open: ");
@@ -52,6 +56,7 @@ int main(int argc, char *argv[]) {
     // Then this is changing the output stream to the t1.txt file
         dup2(fid, 1);  
     // And finally we print the contents of the current directory to the output stream, in this case the file t1.txt
+	printf("Printing output of ls -al to file t1.txt\n"); 
       	execlp("ls", "ls", "-la", NULL);
         return -1;
     }
@@ -65,7 +70,8 @@ int main(int argc, char *argv[]) {
     p4 = fork();
 
     if(p4 == 0){ 
-    // Finally the program will rename the t1.txt file to tree.txt	    
+    // Finally the program will rename the t1.txt file to tree.txt
+	printf("Renaming t1.txt to tree.txt\n");    
         execlp("mv", "mv", "./t1.txt", "./tree.txt", NULL);
         return -1;
     }
@@ -75,8 +81,9 @@ int main(int argc, char *argv[]) {
     }
     
 	
-    // Then the program will wait for each of it's children to be terminated correctly		
-
+    // Then the program will wait for each of it's children to be terminated correctly
+    printf("Waiting for children to be killed\n");	
+  
     if(wait(NULL) == -1){
         perror("Wait Error: ");
         return -1;  
@@ -96,6 +103,8 @@ int main(int argc, char *argv[]) {
         perror("Wait Error: ");
         return -1;  
     }
+
+    printf("List command is done\n");	
 	
     return 0;
 }
