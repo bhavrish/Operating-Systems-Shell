@@ -98,13 +98,13 @@ int main(int argc, char *argv[]) {
                 execv("../objFiles/path", args);
             }
             else if (strcmp(buffer, "exit") == 0) { // if user types exit, execute exit() command
-                if (chdir("Dir0") == -1) // change dir, otherwise print message that dir doesn't exist
-                    printf("\033[1;31mDir0 does not exist!\033[0m\n");
-
                 printf("\033[0;32mGoodbye!\033[0m\n");
-
                 char *args[] = {"./exit", history, NULL};
-                execv("../objFiles/exit", args);
+
+                if (chdir("Dir0") != -1) // try to change dir, otherwise execute in current dir
+                    execv("../objFiles/exit", args);
+                else
+                    execv("./objFiles/exit", args);
             }
             else if (strcmp(buffer, "help") == 0) { // if user types exit, execute exit() command
                 char *args[] = {"./help", buffer, NULL};
